@@ -9,6 +9,12 @@
 
 ![应用图标](art/icon_512.png)
 
+## 下载安装
+
+> [**最新 Release（已签名 APK）**](https://github.com/donghuaigu123/open-source-search/releases/latest)
+>
+> 下载 `开源搜索-release.apk`（Release 资产名为 `OpenSourceSearch-release.apk`）传到手机，点击安装（需允许安装未知来源应用）。支持 Android 7.0 ~ 14。
+
 ## 功能特性
 
 ### 搜索
