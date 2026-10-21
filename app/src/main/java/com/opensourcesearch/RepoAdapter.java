@@ -37,6 +37,10 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public List<Repo> getData() {
+        return new ArrayList<>(data);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

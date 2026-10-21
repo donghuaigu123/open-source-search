@@ -35,7 +35,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
-            android:configChanges="orientation|screenSize|keyboardHidden|uiMode">
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -45,6 +45,6 @@
         <activity
             android:name=".BrowserActivity"
             android:exported="false"
-            android:configChanges="orientation|screenSize|keyboardHidden|uiMode" />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
     </application>
 </manifest>

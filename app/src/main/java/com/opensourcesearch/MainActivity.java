@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
     /** 每页展示数量（需求：不超过 30 个） */
     private static final int PER_PAGE = 30;
 
+    private static final String STATE_QUERY = "state_query";
+    private static final String STATE_RESULTS = "state_results";
+    private static final String STATE_TOTAL = "state_total";
+
     private static final List<String> HOT_KEYWORDS = Arrays.asList(
             "Android", "Jetpack Compose", "Kotlin", "Flutter", "React", "Vue",
             "LLM", "AI", "Rust", "Go", "Python", "TypeScript", "OpenAI", "Machine Learning");
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
     private ExecutorService executor;
     private Handler mainHandler;
     private String currentQuery = "";
+    private int lastTotalCount = 0;
     private ActivityResultLauncher<String> notificationLauncher;
 
     @Override
@@ -101,6 +106,28 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
         setupHotChips();
         renderHistory();
         requestNotificationPermissionIfNeeded();
+
+        if (savedInstanceState != null) {
+            // 主题切换等导致的 Activity 重建：恢复搜索结果
+            String savedQuery = savedInstanceState.getString(STATE_QUERY);
+            if (!TextUtils.isEmpty(savedQuery)) {
+                currentQuery = savedQuery;
+                @SuppressWarnings("unchecked")
+                List<Repo> saved = (List<Repo>) savedInstanceState.getSerializable(STATE_RESULTS);
+                onSearchSuccess(new GitHubApi.SearchResult(
+                        savedInstanceState.getInt(STATE_TOTAL, 0), saved));
+            }
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (!TextUtils.isEmpty(currentQuery) && adapter.getItemCount() > 0) {
+            outState.putString(STATE_QUERY, currentQuery);
+            outState.putSerializable(STATE_RESULTS, (java.io.Serializable) adapter.getData());
+            outState.putInt(STATE_TOTAL, lastTotalCount);
+        }
     }
 
     // ---------- 菜单 / 主题 ----------
@@ -223,11 +250,13 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
 
     private void onSearchSuccess(GitHubApi.SearchResult result) {
         setLoading(false);
-        adapter.setData(result.items);
+        lastTotalCount = result.totalCount;
+        List<Repo> items = result.items != null ? result.items : new ArrayList<Repo>();
+        adapter.setData(items);
         binding.resultSection.setVisibility(View.VISIBLE);
         binding.errorView.setVisibility(View.GONE);
 
-        if (result.items.isEmpty()) {
+        if (items.isEmpty()) {
             binding.recyclerView.setVisibility(View.GONE);
             binding.emptyView.setVisibility(View.VISIBLE);
             binding.emptyText.setText("未找到与 “" + currentQuery + "” 相关的开源仓库\n换个关键词试试");
@@ -239,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
             binding.resultCountText.setText("找到约 " + result.totalCount + " 个仓库");
             binding.resultSortHint.setVisibility(View.VISIBLE);
             binding.resultSortHint.setText("已按星标从高到低排序 · 展示前 "
-                    + result.items.size() + " 条");
+                    + items.size() + " 条");
         }
     }
 

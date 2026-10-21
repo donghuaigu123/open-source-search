@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 /** GitHub 仓库数据模型。 */
-public class Repo {
+public class Repo implements java.io.Serializable {
 
     public long id;
     public String name;
