@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 夜间模式品牌色 -->
+    <color name="brand_primary">#C0C1FF</color>
+    <color name="brand_on_primary">#232891</color>
+    <color name="brand_primary_container">#363EB0</color>
+    <color name="brand_on_primary_container">#E0E1FF</color>
+    <color name="brand_secondary">#C4C4DD</color>
+    <color name="brand_on_secondary">#2D2F42</color>
+    <color name="brand_secondary_container">#434659</color>
+    <color name="brand_on_secondary_container">#E1E0F9</color>
+    <color name="brand_tertiary">#E8B9D5</color>
+    <color name="brand_on_tertiary">#46263B</color>
+    <color name="brand_tertiary_container">#5E3C53</color>
+    <color name="brand_on_tertiary_container">#FFD8EE</color>
+    <color name="brand_error">#FFB4AB</color>
+    <color name="brand_on_error">#690005</color>
+    <color name="brand_error_container">#93000A</color>
+    <color name="brand_on_error_container">#FFDAD6</color>
+    <color name="brand_background">#121318</color>
+    <color name="brand_on_background">#E4E1E9</color>
+    <color name="brand_surface">#121318</color>
+    <color name="brand_on_surface">#E4E1E9</color>
+    <color name="brand_surface_variant">#46464F</color>
+    <color name="brand_on_surface_variant">#C7C5D0</color>
+    <color name="brand_outline">#90909A</color>
+    <color name="brand_outline_variant">#46464F</color>
+    <color name="brand_inverse_surface">#E4E1E9</color>
+    <color name="brand_inverse_on_surface">#303036</color>
+    <color name="brand_surface_container_lowest">#0D0E13</color>
+    <color name="brand_surface_container_low">#1B1B21</color>
+    <color name="brand_surface_container">#1F1F25</color>
+    <color name="brand_surface_container_high">#292930</color>
+    <color name="brand_surface_container_highest">#34343B</color>
+    <color name="icon_gradient_start">#4F46E5</color>
+    <color name="icon_gradient_center">#6D5BF6</color>
+    <color name="icon_gradient_end">#8B5CF6</color>
+</resources>

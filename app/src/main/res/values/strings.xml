@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">开源搜索</string>
+    <string name="search_hint">输入关键词，搜索 GitHub 开源仓库</string>
+    <string name="search_action">搜索仓库</string>
+    <string name="history_title">搜索历史</string>
+    <string name="history_clear">清空</string>
+    <string name="hot_title">热门推荐</string>
+    <string name="results_sort_hint">按星标从高到低</string>
+    <string name="empty_title">输入关键词开始搜索\n在海量 GitHub 开源仓库中按星标发现好项目</string>
+    <string name="retry">重试</string>
+    <string name="theme_toggle">切换日夜主题</string>
+    <string name="theme_mode">主题模式</string>
+    <string name="theme_day">日间模式</string>
+    <string name="theme_night">夜间模式</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="about">关于</string>
+    <string name="about_text">开源搜索 %1$s\n\n基于 GitHub 公共 API 的开源仓库搜索客户端\n\n· 打开即搜，按星标从高到低排列\n· 一键跳转 GitHub 客户端，未安装则使用内置浏览器\n· 内置 WebView 浏览器：多标签、下载、页内查找、桌面 UA、书签\n· 保留最近 15 条搜索历史\n· 日间 / 夜间主题，支持 Material You 动态取色</string>
+    <string name="url_hint">输入网址或搜索内容</string>
+    <string name="find_hint">页内查找</string>
+    <string name="browser_back">后退</string>
+    <string name="browser_forward">前进</string>
+    <string name="browser_refresh">刷新</string>
+    <string name="browser_home">主页</string>
+    <string name="browser_tabs">标签</string>
+    <string name="browser_menu">菜单</string>
+    <string name="tabs_empty">暂无标签页</string>
+    <string name="tabs_title">标签页</string>
+    <string name="menu_new_tab">新建标签页</string>
+    <string name="menu_find">页内查找</string>
+    <string name="menu_desktop">桌面版浏览</string>
+    <string name="menu_bookmark_add">加入书签</string>
+    <string name="menu_bookmark_remove">移除书签</string>
+    <string name="menu_bookmarks">查看书签</string>
+    <string name="menu_copy">复制链接</string>
+    <string name="menu_external">在系统浏览器打开</string>
+    <string name="menu_share">分享页面</string>
+</resources>

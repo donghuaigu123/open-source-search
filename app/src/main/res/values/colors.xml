@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 日间模式品牌色（靛蓝 → 紫罗兰渐变，呼应 GitHub 技术感） -->
+    <color name="brand_primary">#4F46E5</color>
+    <color name="brand_on_primary">#FFFFFF</color>
+    <color name="brand_primary_container">#E0E1FF</color>
+    <color name="brand_on_primary_container">#131A9E</color>
+    <color name="brand_secondary">#5C5D72</color>
+    <color name="brand_on_secondary">#FFFFFF</color>
+    <color name="brand_secondary_container">#E1E0F9</color>
+    <color name="brand_on_secondary_container">#191A2C</color>
+    <color name="brand_tertiary">#78536B</color>
+    <color name="brand_on_tertiary">#FFFFFF</color>
+    <color name="brand_tertiary_container">#FFD8EE</color>
+    <color name="brand_on_tertiary_container">#2F1127</color>
+    <color name="brand_error">#BA1A1A</color>
+    <color name="brand_on_error">#FFFFFF</color>
+    <color name="brand_error_container">#FFDAD6</color>
+    <color name="brand_on_error_container">#410002</color>
+    <color name="brand_background">#FBF8FF</color>
+    <color name="brand_on_background">#1B1B21</color>
+    <color name="brand_surface">#FBF8FF</color>
+    <color name="brand_on_surface">#1B1B21</color>
+    <color name="brand_surface_variant">#E4E1EC</color>
+    <color name="brand_on_surface_variant">#46464F</color>
+    <color name="brand_outline">#777680</color>
+    <color name="brand_outline_variant">#C7C5D0</color>
+    <color name="brand_inverse_surface">#303036</color>
+    <color name="brand_inverse_on_surface">#F3EFF7</color>
+    <color name="brand_surface_container_lowest">#FFFFFF</color>
+    <color name="brand_surface_container_low">#F5F2FA</color>
+    <color name="brand_surface_container">#EFEDF4</color>
+    <color name="brand_surface_container_high">#E9E7EF</color>
+    <color name="brand_surface_container_highest">#E3E1E9</color>
+    <!-- 图标渐变（与自适应图标背景一致） -->
+    <color name="icon_gradient_start">#4F46E5</color>
+    <color name="icon_gradient_center">#6D5BF6</color>
+    <color name="icon_gradient_end">#8B5CF6</color>
+</resources>
