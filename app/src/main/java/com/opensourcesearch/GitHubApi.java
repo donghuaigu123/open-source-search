@@ -44,10 +44,10 @@ public final class GitHubApi {
      * 搜索仓库，按星标从高到低排序。
      *
      * @param keyword  关键词
-     * @param perPage  每页数量（不超过 30）
+     * @param perPage  每页数量（不超过 100）
      */
     public static SearchResult search(String keyword, int perPage) throws IOException, ApiException {
-        int size = Math.min(Math.max(perPage, 1), 30);
+        int size = Math.min(Math.max(perPage, 1), 100);
         String urlStr = BASE_URL
                 + "?q=" + URLEncoder.encode(keyword, "UTF-8")
                 + "&sort=stars&order=desc"

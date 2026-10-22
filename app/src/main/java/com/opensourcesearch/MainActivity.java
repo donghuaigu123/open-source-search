@@ -43,8 +43,8 @@ import java.util.concurrent.Executors;
  */
 public class MainActivity extends AppCompatActivity implements RepoAdapter.Listener {
 
-    /** 每页展示数量（需求：不超过 30 个） */
-    private static final int PER_PAGE = 30;
+    /** 每页展示数量（需求：不超过 100 个） */
+    private static final int PER_PAGE = 100;
 
     private static final String STATE_QUERY = "state_query";
     private static final String STATE_RESULTS = "state_results";
