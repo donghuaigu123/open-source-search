@@ -1,4 +1,4 @@
-# 开源搜索 · OpenSourceSearch
+# OpenSourceSearch
 
 [![Android](https://img.shields.io/badge/Android-7.0%2B%20(API%2024)-3DDC84?logo=android&logoColor=white)](https://www.android.com/)
 [![Target](https://img.shields.io/badge/targetSdk-34%20(Android%2014)-3DDC84?logo=android)](https://developer.android.com/)
@@ -13,7 +13,7 @@
 
 > [**最新 Release（已签名 APK）**](https://github.com/donghuaigu123/open-source-search/releases/latest)
 >
-> 下载 `开源搜索-release.apk`（Release 资产名为 `OpenSourceSearch-release.apk`）传到手机，点击安装（需允许安装未知来源应用）。支持 Android 7.0 ~ 14。
+> 下载 `OpenSourceSearch-release.apk`（Release 资产名）传到手机，点击安装（需允许安装未知来源应用）。支持 Android 7.0 ~ 14。当前版本 **v2.0.0**。
 
 ## 功能特性
 
@@ -82,7 +82,7 @@ EOF
 ./gradlew assembleRelease
 ```
 
-产物：`app/build/outputs/apk/release/开源搜索-1.0.0-release.apk`（已签名）
+产物：`app/build/outputs/apk/release/OpenSourceSearch-2.0.0-release.apk`（已签名）
 
 ## 技术栈
 

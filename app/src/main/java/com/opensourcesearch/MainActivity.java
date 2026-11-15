@@ -229,7 +229,14 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
     }
 
     private void showAboutDialog() {
-        String text = getString(R.string.about_text, "1.0.0");
+        String version = "2.0.0";
+        try {
+            version = getPackageManager()
+                    .getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException ignore) {
+            // 使用默认版本号
+        }
+        String text = getString(R.string.about_text, version);
         new AlertDialog.Builder(this)
                 .setTitle(R.string.about)
                 .setMessage(text)

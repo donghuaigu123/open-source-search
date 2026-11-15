@@ -16,8 +16,8 @@ android {
         applicationId "com.opensourcesearch"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 2
+        versionName "2.0.0"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -63,7 +63,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             if (outputFileName != null && outputFileName.endsWith('.apk')) {
-                outputFileName = "开源搜索-${variant.versionName}-${variant.buildType.name}.apk"
+                outputFileName = "OpenSourceSearch-${variant.versionName}-${variant.buildType.name}.apk"
             }
         }
     }

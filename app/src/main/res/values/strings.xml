@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">开源搜索</string>
+    <string name="app_name">OpenSourceSearch</string>
     <string name="search_hint">输入关键词，搜索 GitHub 开源仓库</string>
     <string name="search_action">搜索仓库</string>
     <string name="history_title">搜索历史</string>
@@ -15,7 +15,7 @@
     <string name="theme_night">夜间模式</string>
     <string name="theme_system">跟随系统</string>
     <string name="about">关于</string>
-    <string name="about_text">开源搜索 %1$s\n\n基于 GitHub 公共 API 的开源仓库搜索客户端\n\n· 打开即搜，按星标从高到低排列\n· 一键跳转 GitHub 客户端，未安装则使用内置浏览器\n· 内置 WebView 浏览器：多标签、下载、页内查找、桌面 UA、书签\n· 保留最近 15 条搜索历史\n· 日间 / 夜间主题，支持 Material You 动态取色</string>
+    <string name="about_text">OpenSourceSearch %1$s\n\n基于 GitHub 公共 API 的开源仓库搜索客户端\n\n· 打开即搜，按星标从高到低排列\n· 一键跳转 GitHub 客户端，未安装则使用内置浏览器\n· 内置 WebView 浏览器：多标签、下载、页内查找、桌面 UA、书签\n· 保留最近 15 条搜索历史\n· 日间 / 夜间主题，支持 Material You 动态取色</string>
     <string name="url_hint">输入网址或搜索内容</string>
     <string name="find_hint">页内查找</string>
     <string name="browser_back">后退</string>
