@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
     private static final int PER_PAGE = 100;
 
     private static final String STATE_QUERY = "state_query";
-    private static final String STATE_RESULTS = "state_results";
-    private static final String STATE_TOTAL = "state_total";
 
     private static final List<String> HOT_KEYWORDS = Arrays.asList(
             "Android", "Jetpack Compose", "Kotlin", "Flutter", "React", "Vue",
@@ -106,27 +104,44 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
         setupHotChips();
         renderHistory();
         requestNotificationPermissionIfNeeded();
+        restoreLastResult(savedInstanceState);
+    }
 
+    /**
+     * 恢复最近一次搜索结果。
+     *
+     * <p>覆盖以下场景：点击结果进入浏览器后系统回收后台进程、
+     * 定制系统杀后台、从最近任务或桌面图标重新打开。
+     * 关键词优先取 savedInstanceState，其次取缓存中记录的关键词。
+     */
+    private void restoreLastResult(Bundle savedInstanceState) {
+        String query = null;
         if (savedInstanceState != null) {
-            // 主题切换等导致的 Activity 重建：恢复搜索结果
-            String savedQuery = savedInstanceState.getString(STATE_QUERY);
-            if (!TextUtils.isEmpty(savedQuery)) {
-                currentQuery = savedQuery;
-                @SuppressWarnings("unchecked")
-                List<Repo> saved = (List<Repo>) savedInstanceState.getSerializable(STATE_RESULTS);
-                onSearchSuccess(new GitHubApi.SearchResult(
-                        savedInstanceState.getInt(STATE_TOTAL, 0), saved));
-            }
+            query = savedInstanceState.getString(STATE_QUERY);
         }
+        ResultCache.Loaded cached = ResultCache.load(this);
+        if (cached == null || cached.items == null || cached.items.isEmpty()) {
+            return;
+        }
+        String q = !TextUtils.isEmpty(query) ? query : cached.query;
+        if (TextUtils.isEmpty(q)) {
+            return;
+        }
+        currentQuery = q;
+        if (binding.searchEditText.getText() != null) {
+            binding.searchEditText.setText(q);
+            binding.searchEditText.setSelection(q.length());
+        }
+        onSearchSuccess(new GitHubApi.SearchResult(cached.totalCount, cached.items), false);
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        // 仅保存关键词；完整结果已持久化到 ResultCache，
+        // 避免大数据量 Bundle 触发 TransactionTooLargeException
         if (!TextUtils.isEmpty(currentQuery) && adapter.getItemCount() > 0) {
             outState.putString(STATE_QUERY, currentQuery);
-            outState.putSerializable(STATE_RESULTS, (java.io.Serializable) adapter.getData());
-            outState.putInt(STATE_TOTAL, lastTotalCount);
         }
     }
 
@@ -239,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
         executor.execute(() -> {
             try {
                 GitHubApi.SearchResult result = GitHubApi.search(q, PER_PAGE);
-                mainHandler.post(() -> onSearchSuccess(result));
+                mainHandler.post(() -> onSearchSuccess(result, true));
             } catch (final Exception e) {
                 final String msg = e.getMessage() == null || e.getMessage().isEmpty()
                         ? "网络异常，请检查网络连接后重试" : e.getMessage();
@@ -248,13 +263,17 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
         });
     }
 
-    private void onSearchSuccess(GitHubApi.SearchResult result) {
+    private void onSearchSuccess(GitHubApi.SearchResult result, boolean persist) {
         setLoading(false);
         lastTotalCount = result.totalCount;
         List<Repo> items = result.items != null ? result.items : new ArrayList<Repo>();
         adapter.setData(items);
         binding.resultSection.setVisibility(View.VISIBLE);
         binding.errorView.setVisibility(View.GONE);
+        if (persist && !items.isEmpty()) {
+            // 持久化最近一次成功的搜索结果，供进程被回收后恢复
+            ResultCache.save(this, currentQuery, result.totalCount, items);
+        }
 
         if (items.isEmpty()) {
             binding.recyclerView.setVisibility(View.GONE);
@@ -274,6 +293,9 @@ public class MainActivity extends AppCompatActivity implements RepoAdapter.Liste
 
     private void onSearchError(String message) {
         setLoading(false);
+        // 清空旧结果，保证「失败态 = 无结果」：
+        // 避免进程被回收后恢复出与关键词不匹配的历史结果
+        adapter.setData(new ArrayList<Repo>());
         binding.resultSection.setVisibility(View.VISIBLE);
         binding.recyclerView.setVisibility(View.GONE);
         binding.emptyView.setVisibility(View.GONE);

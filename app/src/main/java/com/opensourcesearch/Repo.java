@@ -45,6 +45,30 @@ public class Repo implements java.io.Serializable {
         return r;
     }
 
+    /** 序列化为 JSONObject（结果缓存用，字段与 fromJson 对应）。 */
+    public JSONObject toJson() {
+        JSONObject o = new JSONObject();
+        try {
+            o.put("id", id);
+            o.put("name", name);
+            o.put("full_name", fullName);
+            o.put("description", description);
+            o.put("html_url", htmlUrl);
+            o.put("stargazers_count", stars);
+            o.put("forks_count", forks);
+            o.put("open_issues_count", issues);
+            o.put("language", language);
+            o.put("updated_at", updatedAt);
+            JSONObject owner = new JSONObject();
+            owner.put("login", ownerLogin);
+            owner.put("avatar_url", ownerAvatar);
+            o.put("owner", owner);
+        } catch (org.json.JSONException e) {
+            // 忽略：尽力而为
+        }
+        return o;
+    }
+
     /** 星标数格式化：1234 -> 1.2k，1234567 -> 1.2M */
     public static String formatCount(long n) {
         if (n < 1000) {
